@@ -1,0 +1,33 @@
+{
+  "session_name": "Fun!",
+  "start_directory": "/Users/danielblanco/Development/Projects/nodejs_webhook",
+  "windows": [
+    {
+      "panes": [
+        {
+          "shell_command": []
+        },
+        {
+          "shell_command": []
+        },
+        {
+          "shell_command": []
+        },
+        {
+          "shell_command": ["g"]
+        }
+      ],
+      "layout": "tiled",
+      "window_name": "Cmds"
+    },
+    {
+      "panes": [
+        {
+          "shell_command": ["vim ."],
+          "focus": true
+        }
+      ],
+      "window_name": "Code"
+    }
+  ]
+}
