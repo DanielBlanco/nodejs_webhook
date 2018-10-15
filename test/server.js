@@ -1,9 +1,9 @@
-var expect = require("chai").expect;
-var request = require("request");
-var host = "http://localhost:3000";
+const expect = require("chai").expect;
+const request = require("request");
+const host = "http://localhost:3000";
 
 describe("Root", () => {
-  var url = host;
+  let url = host;
 
   it("returns status 200", done => {
     request(url, (error, response, body) => {
@@ -22,7 +22,7 @@ describe("Root", () => {
 
 describe("Color Code Converter API", () => {
   describe("RGB to Hex conversion", () => {
-    var url = host + "/rgbToHex?red=255&green=255&blue=255";
+    let url = host + "/rgbToHex?red=255&green=255&blue=255";
 
     it("returns status 200", done => {
       request(url, (error, response, body) => {
@@ -40,7 +40,7 @@ describe("Color Code Converter API", () => {
   });
 
   describe("Hex to RGB conversion", () => {
-    var url = host + "/hexToRgb?hex=00ff00";
+    let url = host + "/hexToRgb?hex=00ff00";
 
     it("returns status 200", done => {
       request(url, (error, response, body) => {

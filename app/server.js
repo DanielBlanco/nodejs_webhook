@@ -1,27 +1,29 @@
-var express = require("express");
-var app = express();
-var converter = require("./converter");
+const express = require("express");
+const _ = require("lodash");
+const app = express();
+const converter = require("./converter");
 
 app.get("/", (req, res) => {
   res.send("Hello!");
 });
 
 app.get("/rgbToHex", (req, res) => {
-  var red = parseInt(req.query.red, 10);
-  var green = parseInt(req.query.green, 10);
-  var blue = parseInt(req.query.blue, 10);
+  let red = parseInt(req.query.red, 10);
+  let green = parseInt(req.query.green, 10);
+  let blue = parseInt(req.query.blue, 10);
 
-  var hex = converter.rgbToHex(red, green, blue);
+  let hex = converter.rgbToHex(red, green, blue);
 
   res.send(hex);
 });
 
 app.get("/hexToRgb", (req, res) => {
-  var hex = req.query.hex;
+  let rgb = _.flow(
+    converter.hexToRgb,
+    JSON.stringify
+  )(req.query.hex);
 
-  var rgb = converter.hexToRgb(hex);
-
-  res.send(JSON.stringify(rgb));
+  res.send(rgb);
 });
 
 app.listen(3000, () => {
