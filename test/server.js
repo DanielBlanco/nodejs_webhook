@@ -1,4 +1,6 @@
-const expect = require("chai").expect;
+const chai = require("chai");
+const expect = chai.expect;
+const assert = chai.assert;
 const request = require("request");
 const host = "http://localhost:3000";
 
@@ -7,14 +9,14 @@ describe("Root", () => {
 
   it("returns status 200", done => {
     request(url, (error, response, body) => {
-      expect(response.statusCode).to.equal(200);
+      assert.equal(response.statusCode, 200);
       done();
     });
   });
 
   it("returns a hello", done => {
     request(url, (error, response, body) => {
-      expect(body).to.equal("Hello!");
+      assert.equal(body, "Hello!");
       done();
     });
   });

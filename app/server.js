@@ -1,31 +1,42 @@
+const dotenv = require("dotenv");
+const path = require("path");
+const configPath = path.resolve(process.cwd(), "config", ".env");
 const express = require("express");
-const _ = require("lodash");
 const app = express();
-const converter = require("./converter");
+const Home = require("./controllers/home");
+const Converter = require("./controllers/Converter");
 
-app.get("/", (req, res) => {
-  res.send("Hello!");
-});
+class Server {
+  constructor() {
+    this.initEnv();
+    this.initViewEngine();
+    this.initRoutes();
+    this.start();
+  }
 
-app.get("/rgbToHex", (req, res) => {
-  let red = parseInt(req.query.red, 10);
-  let green = parseInt(req.query.green, 10);
-  let blue = parseInt(req.query.blue, 10);
+  start() {
+    let port = process.env.SERVER_PORT || 3000;
+    app.listen(port, () => console.log("Server started on port " + port));
+  }
 
-  let hex = converter.rgbToHex(red, green, blue);
+  initEnv() {
+    let result = dotenv.config({ path: configPath });
+    if (result.error) {
+      throw result.error;
+    }
+    console.log("Environment config:", result.parsed);
+  }
 
-  res.send(hex);
-});
+  initViewEngine() {
+    app.set("views", __dirname + "/views");
+    app.set("view engine", "jade");
+  }
 
-app.get("/hexToRgb", (req, res) => {
-  let rgb = _.flow(
-    converter.hexToRgb,
-    JSON.stringify
-  )(req.query.hex);
+  initRoutes() {
+    app.get("/", (req, res) => new Home(req, res).index());
+    app.get("/rgbToHex", (req, res) => new Converter(req, res).rgbToHex());
+    app.get("/hexToRgb", (req, res) => new Converter(req, res).hexToRgb());
+  }
+}
 
-  res.send(rgb);
-});
-
-app.listen(3000, () => {
-  console.log("We have started our server on port 3000");
-});
+new Server();
