@@ -4,7 +4,8 @@
   "description": "Learning about nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "node app/server.js",
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/DanielBlanco/nodejs_webhook/issues"
   },
-  "homepage": "https://github.com/DanielBlanco/nodejs_webhook#readme"
+  "homepage": "https://github.com/DanielBlanco/nodejs_webhook#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "mocha": "^5.2.0",
+    "request": "^2.88.0"
+  }
 }
