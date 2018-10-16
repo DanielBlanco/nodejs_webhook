@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app/server.js",
-    "migrate.up": "node -e \"require('./bin/migrate.js').up()\"",
+    "migrate": "knex migrate:latest",
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {

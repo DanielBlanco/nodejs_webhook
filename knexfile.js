@@ -1,9 +1,8 @@
-// Update with your config settings.
-require("./app/lib/util/config").loadEnv();
+require(`${process.cwd()}/app/lib/util/config`).loadEnv();
 
 module.exports = {
   development: {
-    debug: true,
+    debug: false,
     client: "postgresql",
     connection: process.env.PG_URL,
     pool: {
