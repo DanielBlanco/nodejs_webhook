@@ -1,14 +1,13 @@
-const dotenv = require("dotenv");
-const path = require("path");
-const configPath = path.resolve(process.cwd(), "config", ".env");
+const Config = require("./lib/util/config");
 const express = require("express");
 const app = express();
 const Home = require("./controllers/home");
-const Converter = require("./controllers/Converter");
+const Converter = require("./controllers/converter");
 
 class Server {
   constructor() {
     this.initEnv();
+    this.initDB();
     this.initViewEngine();
     this.initRoutes();
     this.start();
@@ -20,11 +19,11 @@ class Server {
   }
 
   initEnv() {
-    let result = dotenv.config({ path: configPath });
-    if (result.error) {
-      throw result.error;
-    }
-    console.log("Environment config:", result.parsed);
+    console.log("Environment config:", Config.loadEnv());
+  }
+
+  initDB() {
+    app.set("db", Config.db());
   }
 
   initViewEngine() {
