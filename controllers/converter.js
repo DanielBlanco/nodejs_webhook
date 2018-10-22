@@ -15,7 +15,7 @@ class Converter {
       JSON.stringify
     )(req.query.hex);
 
-    res.send(rgb);
+    this.response.send(rgb);
   }
 
   rgbToHex() {
@@ -25,7 +25,7 @@ class Converter {
 
     let hex = converter.rgbToHex(red, green, blue);
 
-    res.send(hex);
+    this.response.send(hex);
   }
 }
 module.exports = Converter;

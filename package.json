@@ -4,9 +4,9 @@
   "description": "Learning about nodejs",
   "main": "index.js",
   "scripts": {
-    "start": "node app/server.js",
+    "start": "node server.js",
     "migrate": "knex migrate:latest",
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter dot --recursive"
   },
   "repository": {
     "type": "git",

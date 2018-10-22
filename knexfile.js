@@ -1,4 +1,4 @@
-require(`${process.cwd()}/app/lib/util/config`).loadEnv();
+require(`${process.cwd()}/lib/util/config`).loadEnv();
 
 module.exports = {
   development: {

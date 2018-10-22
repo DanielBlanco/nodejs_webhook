@@ -1,8 +1,9 @@
+require("../lib/util/config").loadEnv();
 const chai = require("chai");
 const expect = chai.expect;
 const assert = chai.assert;
 const request = require("request");
-const host = "http://localhost:3000";
+const host = `http://localhost:${process.env.SERVER_PORT}`;
 
 describe("Root", () => {
   let url = host;
@@ -28,14 +29,14 @@ describe("Color Code Converter API", () => {
 
     it("returns status 200", done => {
       request(url, (error, response, body) => {
-        expect(response.statusCode).to.equal(200);
+        assert.equal(response.statusCode, 200);
         done();
       });
     });
 
     it("returns the color in hex", done => {
       request(url, (error, response, body) => {
-        expect(body).to.equal("ffffff");
+        assert.equal(body, "ffffff");
         done();
       });
     });
@@ -46,14 +47,14 @@ describe("Color Code Converter API", () => {
 
     it("returns status 200", done => {
       request(url, (error, response, body) => {
-        expect(response.statusCode).to.equal(200);
+        assert.equal(response.statusCode, 200);
         done();
       });
     });
 
     it("returns the color in RGB", done => {
       request(url, (error, response, body) => {
-        expect(body).to.equal("[0,255,0]");
+        assert.equal(body, "[0,255,0]");
         done();
       });
     });
