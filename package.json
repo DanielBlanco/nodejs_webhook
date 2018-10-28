@@ -28,6 +28,7 @@
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/vow": "^1.0.17",
     "@adonisjs/vow-browser": "^1.0.7",
+    "bulma": "^0.7.2",
     "pg": "^7.5.0"
   },
   "devDependencies": {},
