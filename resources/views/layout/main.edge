@@ -11,13 +11,46 @@
     {{ style('style') }}
   </head>
   <body>
-    <header class="header">
-    </header>
-
-    <div class="container">
-      <div class="content">
-        @!section('content') 
+    <section class="section">
+      <div class="container">
+        <div class="tabs is-boxed is-centered main-menu" id="nav">
+          <ul>
+            <li>
+              <a href="/">
+                <span class="icon is-small"><i class="fa fa-image"></i></span>
+                <span>Home</span>
+              </a>
+            </li>
+            <li href="/webhooks">
+              <a>
+                <span class="icon is-small"><i class="fab fa-empire"></i></span>
+                <span>Webhooks</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="hero is-warning bg-sunset">
+          <div class="hero-body">
+            <h1 class="title">{{ title }}</h1>
+          </div>
+        </div>
+        <div class="content">
+          @!section('content')
+        </div>
       </div>
-    </div>
+    </section>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <a href="https://github.com/DanielBlanco/nodejs_webhook" target="_blank">
+            <span class="icon is-large"><i class="fab fa-lg fa-github"></i></span>
+          </a>
+          <a href="https://twitter.com/dblancorojas" target="_blank">
+            <span class="icon is-large"><i class="fab fa-lg fa-twitter"></i></span>
+          </a>
+		  <a href="https://www.freevector.com/sunset-background-and-canyon-vector-27575#">FreeVector.com</a>
+        </p>
+      </div>
+    </footer>
   </body>
 </html>

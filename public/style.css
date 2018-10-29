@@ -15,6 +15,18 @@ body {
   padding: 0;
 }
 
+.bg-sunset {
+  background: url("/sunset.svg") no-repeat;
+}
+
+.hero .title {
+  margin-left: 5em;
+}
+.sub-menu {
+  padding: 1em;
+}
+
+
 /* section { */
 /*   height: 100%; */
 /*   display: flex; */

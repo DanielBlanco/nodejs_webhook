@@ -18,7 +18,7 @@ class WebhookController {
    * @param {View} ctx.view
    */
   async index({ request, response, view }) {
-    return view.render("webhook.index");
+    return view.render("webhook.index", { items: [] });
   }
 
   /**
