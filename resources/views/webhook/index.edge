@@ -19,16 +19,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>
-      <tr>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>
+      @each(webhook in webhooks)
+        <tr>
+          <td>{{webhook.event}}</td>
+          <td>{{webhook.auth_mechanism}}</td>
+          <td>{{webhook.url}}</td>
+        </tr>
+      @else
+        <tr>
+          <td colspan="3" class="has-text-centered has-text-weight-bold is-size-4 has-text-danger">No webhooks found.</td>
+        </tr>
+      @endeach
     </tbody>
   </table>
 @endsection
