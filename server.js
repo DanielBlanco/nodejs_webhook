@@ -1,43 +1,25 @@
-const Config = require("./lib/util/config");
-const express = require("express");
-const app = express();
-const Home = require("./controllers/home");
-const Webhook = require("./controllers/webhook");
-const Converter = require("./controllers/converter");
+'use strict'
 
-class Server {
-  constructor() {
-    this.initEnv();
-    this.initDB();
-    this.initViewEngine();
-    this.initRoutes();
-    this.start();
-  }
+/*
+|--------------------------------------------------------------------------
+| Http server
+|--------------------------------------------------------------------------
+|
+| This file bootstrap Adonisjs to start the HTTP server. You are free to
+| customize the process of booting the http server.
+|
+| """ Loading ace commands """
+|     At times you may want to load ace commands when starting the HTTP server.
+|     Same can be done by chaining `loadCommands()` method after
+|
+| """ Preloading files """
+|     Also you can preload files by calling `preLoad('path/to/file')` method.
+|     Make sure to pass relative path from the project root.
+*/
 
-  start() {
-    let port = process.env.SERVER_PORT || 3000;
-    app.listen(port, () => console.log("Server started on port " + port));
-  }
+const { Ignitor } = require('@adonisjs/ignitor')
 
-  initEnv() {
-    console.log("Environment config:", Config.loadEnv());
-  }
-
-  initDB() {
-    app.set("db", Config.db());
-  }
-
-  initViewEngine() {
-    app.set("views", __dirname + "/views");
-    app.set("view engine", "jade");
-  }
-
-  initRoutes() {
-    app.get("/", (req, res) => new Home(req, res).index());
-    app.get("/webhooks", (req, res) => new Webhook(req, res).index());
-    app.get("/rgbToHex", (req, res) => new Converter(req, res).rgbToHex());
-    app.get("/hexToRgb", (req, res) => new Converter(req, res).hexToRgb());
-  }
-}
-
-new Server();
+new Ignitor(require('@adonisjs/fold'))
+  .appRoot(__dirname)
+  .fireHttpServer()
+  .catch(console.error)

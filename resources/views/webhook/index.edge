@@ -1,0 +1,35 @@
+@layout('layout/main')
+
+@section('content')
+  @set('title', 'Webhooks')
+  <div class="is-pulled-right sub-menu">
+    <a class="button is-info" href="/webhooks/new">New Webhook!</a>
+  </div>
+  <table class="table">
+    <colgroup>
+      <col style="width:30%">
+      <col style="width:10%">
+      <col style="width:60%">
+    </colgroup>  
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Auth</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(webhook in webhooks)
+        <tr>
+          <td>{{webhook.event}}</td>
+          <td>{{webhook.auth_mechanism}}</td>
+          <td>{{webhook.url}}</td>
+        </tr>
+      @else
+        <tr>
+          <td colspan="3" class="has-text-centered has-text-weight-bold is-size-4 has-text-danger">No webhooks found.</td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+@endsection

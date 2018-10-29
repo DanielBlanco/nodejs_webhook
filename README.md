@@ -1,11 +1,25 @@
 # nodejs_webhook
+
 Webhook service on Nodejs (learning experience)
 
 
-### How to start
+## Adonis fullstack application
 
-- Clone the app.
-- Copy `config/.env.example` to `config/.env` and add your database credentials.
-- Create the databases in your PostgreSQL server (manually).
-- Install knex CLI: `npm install knex -g`
-- Run migrations with: `knex migrate:latest`
+This is the fullstack boilerplate for AdonisJs, it comes pre-configured with.
+
+1. Bodyparser
+2. Session
+3. Authentication
+4. Web security middleware
+5. CORS
+6. Edge template engine
+7. Lucid ORM
+8. Migrations and seeds
+
+#### Migrations
+
+Run the following command to run startup migrations.
+
+```js
+adonis migration:run
+```
