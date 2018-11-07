@@ -12,27 +12,27 @@
   </head>
   <body>
     <section class="section">
-      <div class="container">
-        <div class="tabs is-boxed is-centered main-menu" id="nav">
+      <div class="container box">
+        <div class="hero is-primary is-bold">
+          <div class="hero-body">
+            <h1 class="title is-text-centered">{{ title }}</h1>
+          </div>
+        </div>
+        <div class="mt-1em tabs is-centered is-toggle is-toggle-rounded main-menu" id="nav">
           <ul>
             <li>
               <a href="/">
-                <span class="icon is-small"><i class="fa fa-image"></i></span>
+                <span class="icon is-small"><i class="fas fa-home"></i></span>
                 <span>Home</span>
               </a>
             </li>
-            <li href="/webhooks">
+            <li href="/webhooks" class="is-active">
               <a>
-                <span class="icon is-small"><i class="fab fa-empire"></i></span>
+                <span class="icon is-small"><i class="fas fa-bezier-curve"></i></span>
                 <span>Webhooks</span>
               </a>
             </li>
           </ul>
-        </div>
-        <div class="hero is-warning bg-sunset">
-          <div class="hero-body">
-            <h1 class="title">{{ title }}</h1>
-          </div>
         </div>
         <div class="content">
           @!section('content')

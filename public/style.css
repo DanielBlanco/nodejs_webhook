@@ -8,6 +8,7 @@ html, body {
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
+  background-color: #f9f9f9;
 }
 
 * {
@@ -19,9 +20,10 @@ body {
   background: url("/sunset.svg") no-repeat;
 }
 
-.hero .title {
-  margin-left: 5em;
+.mt-1em {
+  margin-top: 1em;
 }
+
 .sub-menu {
   padding: 1em;
 }
