@@ -18,4 +18,4 @@ const Route = use("Route");
 
 Route.on("/").render("welcome");
 
-Route.resource("webhooks", "WebhookController").only('index');
+Route.resource("webhooks", "WebhookController");

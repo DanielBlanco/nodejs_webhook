@@ -30,7 +30,9 @@ class WebhookController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create({ request, response, view }) {}
+  async create({ request, response, view }) {
+    return view.render("webhook.create");
+  }
 
   /**
    * Create/save a new webhook.
