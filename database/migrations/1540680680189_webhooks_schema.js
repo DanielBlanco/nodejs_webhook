@@ -12,10 +12,7 @@ class WebhooksSchema extends Schema {
         .notNullable()
         .unique();
       table.string("event", 80);
-      table.enum("auth_mechanism", ["basic", "oauth2", "none"], {
-        useNative: true,
-        enumName: "auth_mechanism_type"
-      });
+      table.enum("auth_mechanism", ["basic", "oauth2", "none"]);
       table.json("auth_details", 80);
       table.timestamps();
     });
