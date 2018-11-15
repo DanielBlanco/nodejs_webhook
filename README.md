@@ -23,3 +23,21 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+
+
+#### Tests
+
+Assertion documentation here `https://www.chaijs.com/api/assert/`
+
+to run tests:
+
+```js
+adonis test
+```
+
+
+### To start the app
+
+```
+adonis serve --dev
+```
