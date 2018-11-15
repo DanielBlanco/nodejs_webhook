@@ -12,7 +12,10 @@
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded has-icons-left">
-            <input class="input" type="text" placeholder="https://..." name="url">
+            <input class="input"
+                   type="text"
+                   placeholder="https://..."
+                   name="url" />
             <span class="icon is-small is-left">
               <i class="fas fa-link"></i>
             </span>
@@ -29,11 +32,15 @@
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded has-icons-left">
-            <input class="input" type="text" placeholder="user-created">
+            <input class="input"
+                   type="text"
+                   placeholder="user-created"
+                   name="event" />
             <span class="icon is-small is-left">
               <i class="fas fa-exclamation-circle"></i>
             </span>
           </p>
+          {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('url'), hasErrorFor('event')) }}
         </div>
       </div>
     </div>
@@ -64,8 +71,9 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <textarea class="textarea" placeholder="{}"></textarea>
+            <textarea class="textarea" placeholder="{}" name="auth_details"></textarea>
           </div>
+          {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('auth_details'), hasErrorFor('auth_details')) }}
         </div>
       </div>
     </div>
