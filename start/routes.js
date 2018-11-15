@@ -18,4 +18,6 @@ const Route = use("Route");
 
 Route.on("/").render("welcome");
 
-Route.resource("webhooks", "WebhookController");
+Route.resource("webhooks", "WebhookController").validator(
+  new Map([[["webhooks.store"], ["StoreWebhook"]]])
+);

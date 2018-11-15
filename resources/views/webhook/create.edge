@@ -3,7 +3,8 @@
 @section('content')
   @set('title', 'New Webhook')
 
-  <form>
+  <form method="POST" action="{{ route('WebhookController.store') }}">
+    {{ csrfField() }}
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">URL</label>
@@ -11,11 +12,12 @@
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded has-icons-left">
-            <input class="input" type="text" placeholder="https://...">
+            <input class="input" type="text" placeholder="https://..." name="url">
             <span class="icon is-small is-left">
               <i class="fas fa-link"></i>
             </span>
           </p>
+          {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('url'), hasErrorFor('url')) }}
         </div>
       </div>
     </div>
