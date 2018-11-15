@@ -6,13 +6,17 @@ class StoreWebhook {
    */
   get rules() {
     return {
-      url: "required"
+      url: "required|unique:webhooks|max:250|url",
+      event: "required|max:80"
     };
   }
 
   get messages() {
     return {
-      "url.required": "You must provide an URL."
+      max: "Please keep it under {{ argument.0 }} characters.",
+      "url.unique": "Please provide an unique URL for your webhook.",
+      "url.required": "Please provide an unique URL for your webhook.",
+      "event.required": "Please provide an event identifier."
     };
   }
 }
