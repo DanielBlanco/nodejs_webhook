@@ -3,6 +3,7 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
+const Webhook = use("App/Models/Webhook");
 
 /**
  * Resourceful controller for interacting with webhooks
@@ -39,10 +40,28 @@ class WebhookController {
    * POST webhooks
    *
    * @param {object} ctx
+   * @param {Session} ctx.session
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request, response }) {}
+  async store({ request, session, response }) {
+    const data = request.only([
+      "url",
+      "event",
+      "auth_mechanism",
+      "auth_details"
+    ]);
+
+    try {
+      await Webhook.create(data);
+    } catch (e) {
+      console.log(e);
+      session.flash({ error: "Unable to create webhook!" });
+      return response.redirect("back");
+    }
+
+    return response.route("WebhookController.index");
+  }
 
   /**
    * Display a single webhook.

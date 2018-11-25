@@ -5,6 +5,13 @@
 
   <form method="POST" action="{{ route('WebhookController.store') }}">
     {{ csrfField() }}
+    @if(flashMessage('error'))
+    <div class="columns is-mobile is-centered">
+      <div class="notification is-danger">
+        {{ flashMessage('error') }} 
+      </div>
+    </div>
+    @endif
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">URL</label>
@@ -15,7 +22,8 @@
             <input class="input"
                    type="text"
                    placeholder="https://..."
-                   name="url" />
+                   name="url"
+                   value="{{old('url', '')}}" />
             <span class="icon is-small is-left">
               <i class="fas fa-link"></i>
             </span>
@@ -35,12 +43,13 @@
             <input class="input"
                    type="text"
                    placeholder="user-created"
-                   name="event" />
+                   name="event"
+                   value="{{old('event', '')}}" />
             <span class="icon is-small is-left">
               <i class="fas fa-exclamation-circle"></i>
             </span>
           </p>
-          {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('url'), hasErrorFor('event')) }}
+          {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('event'), hasErrorFor('event')) }}
         </div>
       </div>
     </div>
@@ -53,13 +62,14 @@
         <div class="field is-narrow">
           <div class="control">
             <div class="select is-fullwidth">
-              <select>
-                <option value="0">None</option>
-                <option value="1">Basic</option>
-                <option value="2">Oauth2</option>
+              <select name="auth_mechanism">
+                <option value="none">None</option>
+                <option value="basic">Basic</option>
+                <option value="oauth2">Oauth2</option>
               </select>
             </div>
           </div>
+          {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('auth_mechanism'), hasErrorFor('auth_mechanism')) }}
         </div>
       </div>
     </div>
@@ -71,7 +81,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <textarea class="textarea" placeholder="{}" name="auth_details"></textarea>
+            <textarea class="textarea" placeholder="{}" name="auth_details">{{old('auth_details', '{}')}}</textarea>
           </div>
           {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('auth_details'), hasErrorFor('auth_details')) }}
         </div>
