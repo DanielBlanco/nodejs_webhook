@@ -90,3 +90,37 @@ test("event cannot be over 80 chars", async ({ assert }) => {
     }
   ]);
 });
+
+test("auth_mechanism is required", async ({ assert }) => {
+  const testAttrs = _f.defaults(this.validAttrs)({ auth_mechanism: "" });
+  const validation = await validate(
+    testAttrs,
+    this.val.rules,
+    this.val.messages
+  );
+  assert.isTrue(validation.fails());
+  assert.deepEqual(validation.messages(), [
+    {
+      field: "auth_mechanism",
+      message: "Dude! don't mess with the site and provide an auth mechanism.",
+      validation: "required"
+    }
+  ]);
+});
+
+test("auth_mechanism must be available", async ({ assert }) => {
+  const testAttrs = _f.defaults(this.validAttrs)({ auth_mechanism: "other" });
+  const validation = await validate(
+    testAttrs,
+    this.val.rules,
+    this.val.messages
+  );
+  assert.isTrue(validation.fails());
+  assert.deepEqual(validation.messages(), [
+    {
+      field: "auth_mechanism",
+      message: "Please select one of: None, Basic, OAuth2",
+      validation: "in"
+    }
+  ]);
+});

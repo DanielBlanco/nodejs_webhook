@@ -4,6 +4,6 @@ const Env = use("Env");
 
 module.exports = {
   browser: {
-    timeout: parseInt(Env.get("BROWSER_TESTS_TIMEOUT", 6000))
+    timeout: parseInt(Env.get("BROWSER_TESTS_TIMEOUT", 10000))
   }
 };
