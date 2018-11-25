@@ -17,7 +17,7 @@ beforeEach(async () => {
     url: "http://example.com",
     event: "user_store",
     auth_mechanism: "none",
-    auth_details: {}
+    auth_details: "{}"
   };
 });
 
@@ -121,6 +121,67 @@ test("auth_mechanism must be available", async ({ assert }) => {
       field: "auth_mechanism",
       message: "Please select one of: None, Basic, OAuth2",
       validation: "in"
+    }
+  ]);
+});
+
+test("auth_details must be a valid json", async ({ assert }) => {
+  const testAttrs = _f.defaults(this.validAttrs)({ auth_details: "{" });
+  const validation = await validate(
+    testAttrs,
+    this.val.rules,
+    this.val.messages
+  );
+  assert.isTrue(validation.fails());
+  assert.deepEqual(validation.messages(), [
+    {
+      field: "auth_details",
+      message: "Please provide a valid JSON value",
+      validation: "json"
+    }
+  ]);
+});
+
+test("auth_details is required when auth_mechanism is basic", async ({
+  assert
+}) => {
+  const testAttrs = _f.defaults(this.validAttrs)({
+    auth_mechanism: "basic",
+    auth_details: ""
+  });
+  const validation = await validate(
+    testAttrs,
+    this.val.rules,
+    this.val.messages
+  );
+  assert.isTrue(validation.fails());
+  assert.deepEqual(validation.messages(), [
+    {
+      field: "auth_details",
+      message: "Please provide basic authentication details",
+      validation: "requiredWhen"
+    }
+  ]);
+});
+
+test("auth_details is required when auth_mechanism is oauth2", async ({
+  assert
+}) => {
+  const testAttrs = _f.defaults(this.validAttrs)({
+    auth_mechanism: "oauth2",
+    auth_details: ""
+  });
+  const validation = await validate(
+    testAttrs,
+    this.val.rules,
+    this.val.messages
+  );
+  assert.isTrue(validation.fails());
+  assert.deepEqual(validation.messages(), [
+    {
+      field: "auth_details",
+      message: "Please provide oauth2 authentication details",
+      validation: "requiredWhen"
     }
   ]);
 });
