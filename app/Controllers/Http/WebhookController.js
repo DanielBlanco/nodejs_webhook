@@ -19,7 +19,10 @@ class WebhookController {
    * @param {View} ctx.view
    */
   async index({ request, response, view }) {
-    return view.render("webhook.index", { webhooks: [] });
+    const data = await Webhook.query()
+      .orderBy("event", "desc")
+      .fetch();
+    return view.render("webhook.index", { webhooks: data.rows });
   }
 
   /**
