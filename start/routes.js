@@ -16,7 +16,9 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
 
-Route.on("/").render("welcome");
+Route.route("/", async ({ response }) => {
+  response.route("WebhookController.index");
+});
 
 Route.resource("webhooks", "WebhookController").validator(
   new Map([[["webhooks.store"], ["StoreWebhook"]]])
